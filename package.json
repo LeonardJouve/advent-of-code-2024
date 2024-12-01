@@ -1,0 +1,21 @@
+{
+  "name": "advent-of-code-2024",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@eslint/js": "^9.16.0",
+    "eslint": "^9.16.0",
+    "eslint-config-leonardjouve": "^2.0.2",
+    "globals": "^15.12.0",
+    "tsconfig-leonardjouve": "^1.0.1",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.16.0"
+  }
+}

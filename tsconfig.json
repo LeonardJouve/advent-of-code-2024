@@ -1,0 +1,7 @@
+{
+    "extends": "tsconfig-leonardjouve",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist",
+    },
+}
