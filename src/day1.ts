@@ -25,14 +25,13 @@ const parseInput = (file: string): Input => (readFileSync(file, "utf-8") as stri
     }, {left: [], right: []});
 
 export const day1 = (exemple: boolean): void => {
-    firstPart(exemple);
+    const file = exemple ? "./input/1_exemple.txt" : "./input/1.txt";
+
+    firstPart(parseInput(file));
+    secondPart(parseInput(file));
 };
 
-const firstPart = (exemple: boolean): void => {
-    const file = exemple ? "./input/1_1_exemple.txt" : "./input/1_1.txt";
-
-    const input = parseInput(file);
-
+const firstPart = (input: Input): void => {
     let distance = 0;
     while (input.left.length && input.right.length) {
         const minLeft = Math.min(...input.left);
@@ -45,4 +44,10 @@ const firstPart = (exemple: boolean): void => {
     }
 
     console.log("Distance: ", distance);
+};
+
+const secondPart = (input: Input): void => {
+    const similarity = input.left.reduce((accLeft, leftValue) => accLeft + leftValue * input.right.reduce((accRight, rightValue) => leftValue === rightValue ? accRight + 1 : accRight, 0), 0);
+
+    console.log("Similarity: ", similarity);
 };
