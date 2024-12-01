@@ -5,17 +5,14 @@ type Input = {
     right: number[];
 };
 
-const parseInput = (file: string): Input => (readFileSync(file, "utf-8") as string)
+const parseInput = (file: string): Input => readFileSync(file, "utf-8")
     .split("\n")
     .filter(Boolean)
     .reduce<Input>((acc, line) => {
-        const result = /(\d+)\s+(\d+)/g.exec(line);
-        if (!result?.length) {
-            console.log("no match");
-            return acc;
-        }
+        const [left, right] = line
+            .split("   ")
+            .map((value) => parseInt(value, 10));
 
-        const [_, left, right] = result.map((value) => parseInt(value, 10));
         if (left !== undefined && right !== undefined) {
             acc.left.push(left);
             acc.right.push(right);
