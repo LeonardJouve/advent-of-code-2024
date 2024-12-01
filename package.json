@@ -4,13 +4,15 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "run": "tsc && node dist/index.js"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
     "@eslint/js": "^9.16.0",
+    "@types/node": "^22.10.1",
     "eslint": "^9.16.0",
     "eslint-config-leonardjouve": "^2.0.2",
     "globals": "^15.12.0",
