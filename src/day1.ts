@@ -10,8 +10,8 @@ const parseInput = (file: string): Input => readFileSync(file, "utf-8")
     .filter(Boolean)
     .reduce<Input>((acc, line) => {
         const [left, right] = line
-            .split("   ")
-            .map((value) => parseInt(value, 10));
+            .split(/\s+/g)
+            .map(Number);
 
         if (left !== undefined && right !== undefined) {
             acc.left.push(left);
@@ -29,16 +29,10 @@ export const day1 = (exemple: boolean): void => {
 };
 
 const firstPart = (input: Input): void => {
-    let distance = 0;
-    while (input.left.length && input.right.length) {
-        const minLeft = Math.min(...input.left);
-        input.left.splice(input.left.indexOf(minLeft), 1);
+    input.left.sort((a, b) => a - b);
+    input.right.sort((a, b) => a - b);
 
-        const minRight = Math.min(...input.right);
-        input.right.splice(input.right.indexOf(minRight), 1);
-
-        distance += Math.abs(minLeft - minRight);
-    }
+    const distance = input.left.reduce((acc, left, i) => acc + Math.abs(left - (input.right[i] ?? 0)), 0);
 
     console.log("Distance: ", distance);
 };
