@@ -45,9 +45,7 @@ const move = ({x, y}: Position, direction: Direction, reverse: boolean): Positio
     };
 };
 
-const isValidPosition = (input: Input, position: Position): boolean => position.x >= 0 && position.x < (input[0]?.length ?? 0) && position.y >= 0 && position.y < input.length;
-
-const getPosition = (input: Input, position: Position): string => isValidPosition(input, position) ? input.at(position.y)?.at(position.x) ?? "" : "";
+const getPosition = (input: Input, position: Position): string => input[position.y]?.[position.x] ?? "";
 
 const search = (input: Input, position: Position, char: string): boolean => getPosition(input, position) === char;
 
@@ -76,20 +74,9 @@ export const day4 = (exemple: boolean): void => {
     secondPart(parseInput(file));
 };
 
-const moveModular = (start: Position, position: Position, module: number): Position => {
-};
+const testReverseX = (input: Input, {x, y}: Position, reverse: boolean): boolean => testDirection(input, {x, y}, "MAS", Direction.NEGATIVE_DIAGONAL, reverse) && (testDirection(input, {x, y: y + (reverse ? -2 : 2)}, "MAS", Direction.POSITIVE_DIAGONAL, reverse) || testDirection(input, {x: x + (reverse ? -2 : 2), y}, "MAS", Direction.POSITIVE_DIAGONAL, !reverse));
 
-const testX = (input: Input, position: Position, word: string): boolean => {
-    let currentPosition = {...position};
-
-    return word.split("")
-        .every((char) => {
-            const found = search(input, currentPosition, char);
-            currentPosition = moveModular(currentPosition, position);
-
-            return found;
-        });
-};
+const testX = (input: Input, position: Position): number => [false, true].reduce((acc, reverse) => acc + Number(testReverseX(input, position, reverse)), 0);
 
 const firstPart = (input: Input): void => {
     const word = "XMAS";
@@ -99,7 +86,7 @@ const firstPart = (input: Input): void => {
 };
 
 const secondPart = (input: Input): void => {
-    const result = input.reduce((acc, line, y) => acc + line.split("").reduce((accLine, _, x) => accLine + Number(testX(input, {x, y}, "MSAMS")), 0), 0);
+    const result = input.reduce((acc, line, y) => acc + line.split("").reduce((accLine, _, x) => accLine + testX(input, {x, y}), 0), 0);
 
     console.log("Result: ", result);
 };
