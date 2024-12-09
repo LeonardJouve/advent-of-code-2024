@@ -3,9 +3,11 @@ import {day2} from "./day2.js";
 import {day3} from "./day3.js";
 import {day4} from "./day4.js";
 import {day5} from "./day5.js";
+import {day6} from "./day6.js";
+import {day7} from "./day7.js";
 
 const exemple = false;
-const day = 4;
+const day = 7;
 
 const days = [
     day1,
@@ -13,6 +15,8 @@ const days = [
     day3,
     day4,
     day5,
+    day6,
+    day7,
 ];
 
 days[day - 1]?.(exemple);
