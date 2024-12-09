@@ -6,8 +6,8 @@ import {day5} from "./day5.js";
 import {day6} from "./day6.js";
 import {day7} from "./day7.js";
 
-const exemple = false;
-const day = 7;
+const exemple = true;
+const day = 6;
 
 const days = [
     day1,
