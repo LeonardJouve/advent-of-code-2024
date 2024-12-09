@@ -5,9 +5,10 @@ import {day4} from "./day4.js";
 import {day5} from "./day5.js";
 import {day6} from "./day6.js";
 import {day7} from "./day7.js";
+import {day8} from "./day8.js";
 
-const exemple = true;
-const day = 6;
+const exemple = false;
+const day = 8;
 
 const days = [
     day1,
@@ -17,6 +18,9 @@ const days = [
     day5,
     day6,
     day7,
+    day8,
 ];
+
+console.log("Day " + day + (exemple ? " exemple" : "")); // eslint-disable-line @typescript-eslint/no-unnecessary-condition
 
 days[day - 1]?.(exemple);
